@@ -627,11 +627,23 @@ a:hover, a:focus {
   padding: var(--space-xl);
 }
 
+.about .section-title {
+  padding-top: var(--space-lg);
+}
+
 .about-intro {
   font-size: 1.25rem;
   color: var(--text-primary);
   font-style: italic;
   margin-bottom: var(--space-lg);
+}
+
+.about-closing {
+  font-size: 1.125rem;
+  color: var(--doorway-frame);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  text-align: center;
 }
 
 .credentials {
