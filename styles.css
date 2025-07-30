@@ -452,10 +452,11 @@ a:hover, a:focus {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--space-xl);
   margin-top: var(--space-xl);
+  align-items: start;
 }
 
 .service-card {
-  height: 100%;
+  /* Removed height: 100% to allow natural card heights */
 }
 
 .service-frame {
