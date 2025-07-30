@@ -579,8 +579,9 @@ a:hover, a:focus {
 
 .group-info p {
   margin-bottom: var(--space-xs);
-  color: var(--text-primary);
-  font-size: 0.875rem;
+  color: var(--doorway-frame);
+  font-size: 1rem;
+  text-align: center;
 }
 
 /* Pricing info styling */
