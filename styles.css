@@ -474,6 +474,7 @@ a:hover, a:focus {
 .individual { border-color: var(--doorway-frame); }
 .couples { border-color: var(--accent-portal); }
 .family { border-color: var(--transition-space); }
+.group { border-color: #8B7355; }
 
 .service-icon {
   margin-bottom: var(--space-lg);
@@ -483,7 +484,8 @@ a:hover, a:focus {
 
 .single-doorway,
 .double-doorway,
-.wide-doorway {
+.wide-doorway,
+.circle-doorway {
   height: 50px;
   border-radius: 6px;
 }
@@ -513,6 +515,38 @@ a:hover, a:focus {
 .wide-doorway {
   width: 100px;
   border: 4px solid var(--transition-space);
+}
+
+.circle-doorway {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #8B7355;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-doorway::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: #8B7355;
+  border-radius: 50%;
+}
+
+/* Group info styling */
+.group-info {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(139, 115, 85, 0.2);
+}
+
+.group-info p {
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
+  font-size: 0.875rem;
 }
 
 .service-title {
