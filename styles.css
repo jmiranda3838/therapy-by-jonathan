@@ -583,6 +583,20 @@ a:hover, a:focus {
   font-size: 0.875rem;
 }
 
+/* Pricing info styling */
+.pricing-info {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(212, 132, 92, 0.2);
+  text-align: center;
+}
+
+.pricing-info p {
+  margin: 0;
+  color: var(--doorway-frame);
+  font-size: 1rem;
+}
+
 .service-title {
   color: var(--text-primary);
   margin-bottom: var(--space-sm);
