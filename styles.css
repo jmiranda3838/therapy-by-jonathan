@@ -377,16 +377,18 @@ a:hover, a:focus {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--space-xl);
   margin-top: var(--space-xl);
+  align-items: stretch;
 }
 
 .journey-step {
   position: relative;
+  height: 100%;
 }
 
 .step-frame {
   padding: var(--space-xl);
   text-align: center;
-  min-height: 350px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -483,11 +485,11 @@ a:hover, a:focus {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--space-xl);
   margin-top: var(--space-xl);
-  align-items: start;
+  align-items: stretch;
 }
 
 .service-card {
-  /* Removed height: 100% to allow natural card heights */
+  height: 100%;
 }
 
 .service-frame {
