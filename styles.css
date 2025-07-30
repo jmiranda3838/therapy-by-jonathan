@@ -681,49 +681,182 @@ a:hover, a:focus {
   aspect-ratio: 3/4;
 }
 
-/* Begin Journey Section */
-.begin-frame {
-  margin: 0 var(--space-lg);
-  background: linear-gradient(135deg, var(--white), rgba(168, 181, 163, 0.05));
+/* Begin Journey Section - 3D Portal Effect */
+.portal-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.portal-doorway {
+  position: absolute;
+  border: 4px solid var(--doorway-frame);
+  border-radius: 12px;
+  background: transparent;
+  opacity: 0.6;
+  animation: portalFloat 8s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.portal-1 {
+  width: 200px;
+  height: 300px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 6s;
+}
+
+.portal-2 {
+  width: 150px;
+  height: 250px;
+  top: 20%;
+  right: 15%;
+  animation-delay: -2s;
+  animation-duration: 8s;
+}
+
+.portal-3 {
+  width: 180px;
+  height: 280px;
+  bottom: 15%;
+  left: 20%;
+  animation-delay: -4s;
+  animation-duration: 7s;
+}
+
+.portal-4 {
+  width: 120px;
+  height: 200px;
+  bottom: 25%;
+  right: 25%;
+  animation-delay: -1s;
+  animation-duration: 9s;
+}
+
+.portal-5 {
+  width: 160px;
+  height: 240px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.portal-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  border: 8px solid rgba(212, 132, 92, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(212, 132, 92, 0.1), transparent 70%);
+  animation: portalPulse 4s ease-in-out infinite;
+}
+
+@keyframes portalFloat {
+  0%, 100% {
+    transform: translateY(0) rotateY(0deg) translateZ(0);
+    opacity: 0.6;
+    border-color: var(--doorway-frame);
+  }
+  25% {
+    transform: translateY(-20px) rotateY(15deg) translateZ(50px);
+    opacity: 0.8;
+    border-color: var(--accent-portal);
+  }
+  50% {
+    transform: translateY(-10px) rotateY(0deg) translateZ(100px);
+    opacity: 0.4;
+    border-color: var(--transition-space);
+  }
+  75% {
+    transform: translateY(-30px) rotateY(-15deg) translateZ(50px);
+    opacity: 0.7;
+    border-color: var(--doorway-frame);
+  }
+}
+
+@keyframes portalPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.1;
+  }
+}
+
+.begin-content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  backdrop-filter: blur(1px);
 }
 
 .begin-content {
   text-align: center;
   padding: var(--space-xxl);
+  background: rgba(248, 246, 242, 0.95);
+  border-radius: var(--frame-radius);
+  box-shadow: var(--shadow-strong);
+  max-width: 800px;
+  margin: 0 auto;
+  border: 2px solid rgba(212, 132, 92, 0.2);
 }
 
-.begin-text {
+.portal-title {
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: var(--space-lg);
+}
+
+.portal-text {
   font-size: 1.25rem;
   margin-bottom: var(--space-xl);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 .cta-container {
   margin-bottom: var(--space-lg);
 }
 
-.main-cta {
+.portal-cta {
   font-size: 1.125rem;
   padding: var(--space-md) var(--space-xl);
   position: relative;
+  box-shadow: var(--shadow-strong);
+  transition: all 0.3s ease;
 }
 
-.button-doorway {
-  position: absolute;
-  right: var(--space-sm);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255,255,255,0.5);
-  border-radius: 4px;
+.portal-cta:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(212, 132, 92, 0.4);
 }
 
-.contact-info {
+.portal-info {
   color: var(--text-secondary);
   font-style: italic;
+  opacity: 0.8;
 }
 
 /* Footer */

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initDoorwayAnimations();
     initScrollRevealAnimations();
     initNavigationInteractions();
+    initPortalEffects();
     initAccessibilityFeatures();
 });
 
@@ -245,6 +246,124 @@ function initScrollRevealAnimations() {
         card.style.transform = index % 2 === 0 ? 'translateX(-50px) rotateY(-5deg)' : 'translateX(50px) rotateY(5deg)';
         card.style.transition = 'opacity 0.7s ease-out, transform 0.7s ease-out';
         serviceObserver.observe(card);
+    });
+}
+
+// 3D Portal Effects for consultation section
+function initPortalEffects() {
+    const portalSection = document.querySelector('.portal-section');
+    const portalDoorways = document.querySelectorAll('.portal-doorway');
+    const portalCenter = document.querySelector('.portal-center');
+    const portalContent = document.querySelector('.begin-content');
+    
+    if (!portalSection || !portalDoorways.length) return;
+    
+    let ticking = false;
+    
+    function updatePortalEffects() {
+        const rect = portalSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        
+        // Calculate scroll progress through the section (0 to 1)
+        let scrollProgress = 0;
+        if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+            scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (windowHeight + sectionHeight)));
+        }
+        
+        // Intensity increases as user scrolls into section
+        const intensity = scrollProgress * 2; // Amplify the effect
+        
+        // Update portal doorways with scroll-based animations
+        portalDoorways.forEach((doorway, index) => {
+            const baseScale = 1 + (scrollProgress * 0.5);
+            const rotationMultiplier = (index % 2 === 0 ? 1 : -1);
+            const rotation = scrollProgress * 360 * rotationMultiplier;
+            const translateZ = scrollProgress * 200;
+            
+            // Create "sucking in" effect
+            const suckIntensity = Math.pow(scrollProgress, 2);
+            const suckScale = 1 + (suckIntensity * 1.5);
+            const suckOpacity = Math.max(0.2, 1 - suckIntensity);
+            
+            doorway.style.transform = `
+                scale(${suckScale}) 
+                rotateY(${rotation}deg) 
+                translateZ(${translateZ}px)
+                perspective(1000px)
+            `;
+            doorway.style.opacity = suckOpacity;
+            
+            // Color shift based on scroll
+            const hue = 25 + (scrollProgress * 50); // Shift from orange to red
+            const saturation = 60 + (scrollProgress * 40);
+            doorway.style.borderColor = `hsl(${hue}, ${saturation}%, 55%)`;
+        });
+        
+        // Update center portal
+        if (portalCenter) {
+            const centerScale = 1 + (scrollProgress * 2);
+            const centerOpacity = Math.max(0.1, 0.5 - scrollProgress * 0.3);
+            const centerBlur = scrollProgress * 2;
+            
+            portalCenter.style.transform = `
+                translate(-50%, -50%) 
+                scale(${centerScale}) 
+                rotateZ(${scrollProgress * 180}deg)
+            `;
+            portalCenter.style.opacity = centerOpacity;
+            portalCenter.style.filter = `blur(${centerBlur}px)`;
+        }
+        
+        // Update content box
+        if (portalContent) {
+            const contentScale = Math.max(0.8, 1 - scrollProgress * 0.2);
+            const contentOpacity = Math.max(0.7, 1 - scrollProgress * 0.3);
+            
+            portalContent.style.transform = `scale(${contentScale}) translateZ(${scrollProgress * 50}px)`;
+            portalContent.style.opacity = contentOpacity;
+        }
+        
+        ticking = false;
+    }
+    
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(updatePortalEffects);
+            ticking = true;
+        }
+    }
+    
+    // Initial call
+    updatePortalEffects();
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // Mouse movement parallax effect
+    portalSection.addEventListener('mousemove', function(e) {
+        const rect = portalSection.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const mouseX = e.clientX - centerX;
+        const mouseY = e.clientY - centerY;
+        
+        const maxOffset = 30;
+        const offsetX = (mouseX / rect.width) * maxOffset;
+        const offsetY = (mouseY / rect.height) * maxOffset;
+        
+        portalDoorways.forEach((doorway, index) => {
+            const multiplier = (index + 1) * 0.2;
+            doorway.style.transform += ` translate(${offsetX * multiplier}px, ${offsetY * multiplier}px)`;
+        });
+    });
+    
+    // Reset on mouse leave
+    portalSection.addEventListener('mouseleave', function() {
+        portalDoorways.forEach(doorway => {
+            doorway.style.transform = doorway.style.transform.replace(/translate\([^)]+\)/g, '');
+        });
     });
 }
 
