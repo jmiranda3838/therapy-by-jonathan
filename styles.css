@@ -859,6 +859,247 @@ a:hover, a:focus {
   opacity: 0.8;
 }
 
+/* Contact Page Styles */
+.contact-hero {
+  padding-top: calc(80px + var(--space-xl));
+  padding-bottom: var(--space-xxl);
+}
+
+.contact-frame {
+  margin: 0 var(--space-lg);
+  background: linear-gradient(135deg, var(--white), rgba(168, 181, 163, 0.05));
+}
+
+.contact-hero-content {
+  text-align: center;
+  padding: var(--space-xxl);
+}
+
+.contact-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  line-height: 1.2;
+}
+
+.contact-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.consultation-info {
+  margin-top: var(--space-xl);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.info-card {
+  background: var(--white);
+  padding: var(--space-lg);
+  border-radius: var(--frame-radius);
+  border: 2px solid var(--doorway-frame);
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--accent-portal);
+}
+
+.info-card h3 {
+  color: var(--doorway-frame);
+  margin-bottom: var(--space-sm);
+  font-size: 1.25rem;
+}
+
+.info-card p {
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Calendly Section */
+.calendly-section {
+  padding: var(--space-xxl) 0;
+  background: var(--bg-primary);
+}
+
+.calendly-first {
+  padding-top: calc(80px + var(--space-xxl));
+  text-align: center;
+}
+
+.calendly-first .contact-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  line-height: 1.2;
+}
+
+.calendly-first .contact-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.calendly-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.calendly-inline-widget {
+  border-radius: var(--frame-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
+  border: 2px solid rgba(212, 132, 92, 0.2);
+}
+
+/* Contact Alternative */
+.contact-alternative {
+  margin-top: var(--space-xxl);
+  text-align: center;
+  padding: var(--space-xl);
+  background: rgba(168, 181, 163, 0.05);
+  border-radius: var(--frame-radius);
+  border: 1px solid rgba(168, 181, 163, 0.2);
+}
+
+.contact-alternative h3 {
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  font-size: 1.5rem;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.contact-method {
+  text-align: center;
+}
+
+.contact-method h4 {
+  color: var(--doorway-frame);
+  margin-bottom: var(--space-sm);
+  font-size: 1.125rem;
+}
+
+.contact-method p {
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.contact-method a {
+  color: var(--doorway-frame);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-method a:hover {
+  color: var(--accent-portal);
+  text-decoration: underline;
+}
+
+/* Services Overview on Contact Page */
+.contact-services {
+  padding: var(--space-xxl) 0;
+}
+
+.services-overview-frame {
+  margin: 0 var(--space-lg);
+  background: linear-gradient(135deg, var(--white), rgba(212, 132, 92, 0.03));
+}
+
+.services-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  padding: var(--space-xl);
+}
+
+.service-overview {
+  text-align: center;
+  padding: var(--space-lg);
+  background: var(--white);
+  border-radius: var(--frame-radius);
+  border: 2px solid rgba(212, 132, 92, 0.1);
+  transition: var(--transition-smooth);
+}
+
+.service-overview:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-subtle);
+  border-color: var(--doorway-frame);
+}
+
+.service-overview h3 {
+  color: var(--doorway-frame);
+  margin-bottom: var(--space-sm);
+  font-size: 1.25rem;
+}
+
+.service-overview p {
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Navigation active state */
+.nav-active {
+  background: rgba(212, 132, 92, 0.15);
+  color: var(--doorway-frame) !important;
+  border-radius: 6px;
+}
+
+/* Responsive Design for Contact Page */
+@media (max-width: 768px) {
+  .contact-hero-content {
+    padding: var(--space-lg);
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .calendly-inline-widget {
+    height: 600px !important;
+  }
+  
+  .contact-methods {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .services-overview-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+  }
+}
+
 /* Footer */
 .footer {
   background: var(--text-primary);
