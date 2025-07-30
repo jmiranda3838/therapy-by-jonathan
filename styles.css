@@ -296,6 +296,37 @@ a:hover, a:focus {
   color: var(--white);
 }
 
+/* Hero CTA Button */
+.hero-cta {
+  margin-top: var(--space-lg);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-consultation-btn {
+  background: var(--doorway-frame);
+  font-size: 1.125rem;
+  padding: var(--space-md) var(--space-xl);
+  font-weight: 600;
+  box-shadow: var(--shadow-medium);
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-consultation-btn:hover,
+.hero-consultation-btn:focus {
+  background: var(--accent-portal);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-strong);
+}
+
+.hero-consultation-btn .button-doorway {
+  width: 16px;
+  height: 16px;
+  margin-left: var(--space-xs);
+}
+
 .hero-image {
   display: flex;
   justify-content: center;
@@ -798,6 +829,11 @@ a:hover, a:focus {
   
   .service-tags {
     justify-content: center;
+  }
+  
+  .hero-cta {
+    justify-content: center;
+    margin-top: var(--space-md);
   }
   
   .doorway-button {
