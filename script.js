@@ -4,6 +4,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all interactive features
     initSmoothScrolling();
+    initServiceTagScrolling();
     initDoorwayAnimations();
     initScrollRevealAnimations();
     initNavigationInteractions();
@@ -33,6 +34,91 @@ function initSmoothScrolling() {
                 // Update URL without jumping
                 history.pushState(null, null, targetId);
             }
+        });
+    });
+}
+
+// Service tag scrolling functionality
+function initServiceTagScrolling() {
+    const serviceTags = document.querySelectorAll('.service-tags .doorway-tag');
+    console.log('Found service tags:', serviceTags.length);
+    
+    // Map service tag text to their corresponding service cards
+    const serviceMapping = {
+        'Individual': '.doorway-frame.service-frame.individual',
+        'Couples': '.doorway-frame.service-frame.couples', 
+        'Family': '.doorway-frame.service-frame.family',
+        'Group': '.doorway-frame.service-frame.group'
+    };
+    
+    serviceTags.forEach((tag, index) => {
+        console.log(`Setting up tag ${index}:`, tag.textContent);
+        
+        // Make tags focusable and add proper accessibility
+        tag.setAttribute('tabindex', '0');
+        tag.setAttribute('role', 'button');
+        tag.setAttribute('aria-label', `Scroll to ${tag.textContent} therapy section`);
+        
+        // Add click handler
+        tag.addEventListener('click', function(e) {
+            e.preventDefault();
+            const serviceType = this.textContent.trim();
+            const targetSelector = serviceMapping[serviceType];
+            
+            console.log('Clicked service:', serviceType, 'Selector:', targetSelector);
+            
+            if (targetSelector) {
+                const targetElement = document.querySelector(targetSelector);
+                console.log('Target element found:', targetElement);
+                
+                if (targetElement) {
+                    const headerHeight = document.querySelector('.header').offsetHeight || 80;
+                    const rect = targetElement.getBoundingClientRect();
+                    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const targetPosition = rect.top + currentScrollTop - headerHeight - 40;
+                    
+                    console.log('Element rect:', rect);
+                    console.log('Current scroll:', currentScrollTop);
+                    console.log('Header height:', headerHeight);
+                    console.log('Final scroll position:', targetPosition);
+                    
+                    // Smooth scroll to the service card
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Add temporary highlight effect to the target card
+                    targetElement.style.transition = 'box-shadow 0.3s ease';
+                    targetElement.style.boxShadow = '0 0 20px rgba(212, 132, 92, 0.4)';
+                    
+                    setTimeout(() => {
+                        targetElement.style.boxShadow = '';
+                    }, 2000);
+                } else {
+                    console.error('Target element not found for selector:', targetSelector);
+                }
+            } else {
+                console.error('No mapping found for service type:', serviceType);
+            }
+        });
+        
+        // Add keyboard support
+        tag.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+        
+        // Enhanced hover effect for clickable tags
+        tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.cursor = 'pointer';
+        });
+        
+        tag.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
         });
     });
 }
@@ -258,6 +344,7 @@ function initAccessibilityFeatures() {
         threshold: 0.5
     });
     
+    const sections = document.querySelectorAll('section[id]');
     sections.forEach(section => {
         sectionObserver.observe(section);
     });
