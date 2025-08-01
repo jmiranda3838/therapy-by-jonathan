@@ -1,4 +1,4 @@
-// Therapy by jonathan - Interactive JavaScript
+// Therapy by Jonathan - Interactive JavaScript
 // Liminal Modernism: Doorway interactions and smooth journey transitions
 
 document.addEventListener('DOMContentLoaded', function() {
