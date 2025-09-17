@@ -8,6 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17575166556"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17575166556');
+    </script>
+
     <!-- Calendly CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 
@@ -779,6 +790,24 @@
 
             document.querySelectorAll('.fade-in').forEach((el) => {
                 observer.observe(el);
+            });
+
+            // Calendly conversion tracking
+            window.addEventListener('message', function(e) {
+                if (e.data.event && e.data.event.indexOf('calendly') === 0) {
+                    if (e.data.event === 'calendly.event_scheduled') {
+                        // Fire Google Ads conversion event
+                        gtag('event', 'conversion', {
+                            'send_to': 'AW-17575166556/consultation_scheduled',
+                            'value': 400.0,
+                            'currency': 'USD',
+                            'transaction_id': 'infidelity_consultation_' + Date.now()
+                        });
+
+                        // Optional: Log for debugging
+                        console.log('Calendly consultation scheduled - conversion tracked');
+                    }
+                }
             });
         });
 
