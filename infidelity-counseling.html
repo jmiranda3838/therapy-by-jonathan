@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infidelity & Betrayal Counseling - Therapy by Jonathan</title>
-    <meta name="description" content="Steady help when trust is shaken. Professional infidelity and betrayal counseling with Jonathan Miranda, AMFT. Repair or separate with dignity and clarity.">
+    <title>Couple Infidelity Counseling & Healing from Affairs | Therapy by Jonathan</title>
+    <meta name="description" content="Professional infidelity reconciliation counseling for couples healing from affairs. Find infidelity solutions and rebuild trust with Jonathan Miranda, AMFT in Costa Mesa, CA.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -206,6 +206,27 @@
             margin-right: auto;
         }
 
+        .hero-meta {
+            margin-top: var(--space-md);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.5rem 1rem;
+            border-radius: 24px;
+            border: 1px solid var(--border-subtle);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(14px);
+        }
+
         /* Cards */
         .card {
             background: var(--bg-card);
@@ -233,6 +254,30 @@
         .card-text {
             color: var(--text-secondary);
             line-height: 1.7;
+        }
+
+        .card-text + ul {
+            margin-top: var(--space-sm);
+        }
+
+        .keyword-list {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .keyword-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            color: var(--text-secondary);
+        }
+
+        .keyword-list li::before {
+            content: '•';
+            color: var(--accent-primary);
+            font-weight: 700;
         }
 
         /* Grid Layouts */
@@ -330,6 +375,16 @@
         .btn-secondary:hover {
             background: var(--accent-primary);
             color: white;
+        }
+
+        .inline-cta {
+            text-align: center;
+            margin-top: var(--space-xl);
+        }
+
+        .inline-cta p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-sm);
         }
 
         /* CTA Section */
@@ -475,6 +530,69 @@
             margin-bottom: var(--space-xs);
         }
 
+        .success-paths {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .success-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-glow);
+            position: relative;
+        }
+
+        .success-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+
+        .success-card p {
+            color: var(--text-secondary);
+        }
+
+        .expectations-list {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            gap: var(--space-sm);
+        }
+
+        .expectations-list li {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: var(--space-md);
+            color: var(--text-secondary);
+        }
+
+        .testimonial-section {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(8, 145, 178, 0.08));
+            border-radius: 24px;
+            padding: var(--space-xxl);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-quote {
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .testimonial-citation {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
         /* Footer */
         .footer {
             background: var(--bg-secondary);
@@ -494,6 +612,15 @@
                 padding: 0 var(--space-md);
             }
 
+            .hero-meta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-meta span {
+                justify-content: center;
+            }
+
             .professional-info {
                 flex-direction: column;
                 text-align: center;
@@ -507,8 +634,52 @@
                 grid-template-columns: 1fr;
             }
 
+            .success-paths {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-section {
+                padding: var(--space-xl);
+            }
+
             .cta-section {
                 padding: var(--space-xl);
+            }
+        }
+
+        /* Sticky CTA Button */
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-card);
+        }
+
+        .sticky-cta.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sticky-cta .btn {
+            font-size: 0.9rem;
+            padding: var(--space-sm) var(--space-lg);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .sticky-cta {
+                bottom: 15px;
+                right: 15px;
+                left: 15px;
+            }
+
+            .sticky-cta .btn {
+                width: 100%;
+                text-align: center;
             }
         }
 
@@ -555,14 +726,22 @@
         <section class="hero section">
             <div class="container">
                 <h1 class="hero-title fade-in">Steady help when trust is shaken</h1>
-                <p class="hero-subtitle fade-in">When an affair or betrayal comes to light, most couples land in some mix of shock, anger, panic, and numbness. It's messy. It's also workable.</p>
+                <p class="hero-subtitle fade-in">When an affair or betrayal comes to light, most couples land in some mix of shock, anger, panic, and numbness. It's messy—and still workable with steady support.</p>
+                <p class="hero-subtitle fade-in" style="max-width: 640px;">I help couples healing from an affair slow things down, ask better questions, and decide together what comes next.</p>
                 <a href="#consultation" class="btn btn-primary fade-in">Book Your 15-Minute Consultation</a>
+                <div class="hero-meta fade-in">
+                    <span>Focused on affair recovery</span>
+                    <span>75 minutes · $120</span>
+                    <span>In-person Costa Mesa or telehealth across California</span>
+                </div>
             </div>
         </section>
 
         <!-- Professional Introduction -->
         <section class="section">
             <div class="container">
+                <h2 class="card-title" style="text-align: center; margin-bottom: var(--space-md);">Counseling for Infidelity Reconciliation</h2>
+                <p class="card-text" style="text-align: center; max-width: 720px; margin: 0 auto var(--space-xl);">Support for couples healing from an affair is the core of my practice. We'll move at a pace that keeps both of you in the room while honoring the impact of the betrayal.</p>
                 <div class="professional-info fade-in">
                     <div class="professional-photo">
                         <img src="jonathanmirandaheadshot.webp" alt="Jonathan Miranda, Associate Marriage and Family Therapist">
@@ -571,8 +750,13 @@
                         <h3>Jonathan Miranda, AMFT</h3>
                         <p>Associate Marriage and Family Therapist #150199</p>
                         <p>Supervised by Elizabeth Armstrong, LMFT #111154</p>
+                        <p>Employed by California Family Institute</p>
                         <p class="card-text">My role isn't to judge, take sides, or referee arguments—it's to help your relationship speak for itself so the two of you can decide how to go forward with clarity and care, together or apart.</p>
                     </div>
+                </div>
+                <div class="inline-cta">
+                    <p>Have 15 minutes? Let's assess fit and next steps.</p>
+                    <a href="#consultation" class="btn btn-secondary">Start the conversation</a>
                 </div>
             </div>
         </section>
@@ -580,32 +764,38 @@
         <!-- How I Think About Infidelity -->
         <section class="section">
             <div class="container">
-                <h2 class="card-title" style="text-align: center; margin-bottom: var(--space-xl);">How I think about infidelity</h2>
+                <h2 class="card-title" style="text-align: center; margin-bottom: var(--space-md);">How Do Couples Get Over Infidelity?</h2>
+                <p class="card-text" style="text-align: center; max-width: 720px; margin: 0 auto var(--space-xl);">Infidelity solutions rarely come from quick fixes. We slow down the story, surface unmet longings, and design practical next steps that respect both partners' limits and hopes.</p>
                 <div class="balanced-grid">
                     <div class="card fade-in">
-                        <h3 class="card-title">Affairs are both rupture and message</h3>
-                        <p class="card-text">An affair is both a rupture and a message about the relationship's hopes, hurts, and constraints. We'll make space for both—without excusing harm.</p>
+                        <h3 class="card-title">Infidelity is rupture and message</h3>
+                        <p class="card-text">An affair is both a break in trust and a message about the relationship's hopes, hurts, and constraints. We make room for both without excusing harm.</p>
                     </div>
                     <div class="card fade-in">
-                        <h3 class="card-title">Accountability over blame</h3>
-                        <p class="card-text">Blame and "who's right" keep couples stuck. Accountability is a relational accomplishment we build together.</p>
+                        <h3 class="card-title">Accountability fuels reconciliation</h3>
+                        <p class="card-text">Blame and "who's right" keep couples stuck. Lasting infidelity reconciliation happens when accountability becomes something you build together.</p>
                     </div>
                     <div class="card fade-in">
-                        <h3 class="card-title">Both paths are honorable</h3>
-                        <p class="card-text">Repair and separation are both honorable outcomes. Our aim is honest choice, not forced reconciliation.</p>
+                        <h3 class="card-title">Both paths stay on the table</h3>
+                        <p class="card-text">Repair and separation are honorable outcomes. We clarify what each one requires so you can choose with honesty, not pressure.</p>
                     </div>
                     <div class="card fade-in">
                         <h3 class="card-title">Safety comes first</h3>
-                        <p class="card-text">Safety and steadiness come first: clear boundaries, no secret side-conversations with the therapist, and no weaponized disclosures.</p>
+                        <p class="card-text">Safety and steadiness drive every session: clear boundaries, no secret side-conversations with the therapist, and no weaponized disclosures.</p>
                     </div>
+                </div>
+                <div class="inline-cta">
+                    <p>Ready for grounded guidance tailored to your situation?</p>
+                    <a href="#consultation" class="btn btn-primary">Schedule infidelity counseling now</a>
                 </div>
             </div>
         </section>
 
-        <!-- How We'll Work -->
+        <!-- Reconciliation Path -->
         <section class="section">
             <div class="container">
-                <h2 class="card-title" style="text-align: center; margin-bottom: var(--space-xl);">How we'll work (simple, structured, humane)</h2>
+                <h2 class="card-title" style="text-align: center; margin-bottom: var(--space-md);">Is Reconciliation Possible After Betrayal?</h2>
+                <p class="card-text" style="text-align: center; max-width: 720px; margin: 0 auto var(--space-xl);">We map a clear route through crisis, healing, and long-term decisions so you can see what's truly possible after couple infidelity.</p>
                 <div class="process-steps">
                     <div class="process-step fade-in">
                         <div class="step-number">1</div>
@@ -633,6 +823,10 @@
                         <p class="step-text">If repairing: rituals of apology, transparency practices, rebuilding intimacy. If parting: dignity and clear agreements.</p>
                     </div>
                 </div>
+                <div class="inline-cta">
+                    <p>Let's talk about what reconciliation could look like for you.</p>
+                    <a href="#consultation" class="btn btn-secondary">Ask about infidelity reconciliation</a>
+                </div>
             </div>
         </section>
 
@@ -659,6 +853,77 @@
                             <p class="card-text">I won't promise instant healing or easy solutions.</p>
                         </div>
                     </div>
+                    <div class="inline-cta">
+                        <p>If those guardrails feel right, let's start the conversation.</p>
+                        <a href="#consultation" class="btn btn-primary">Book the consultation</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infidelity Solutions -->
+        <section class="section">
+            <div class="container">
+                <h2 class="card-title" style="text-align: center; margin-bottom: var(--space-md);">Finding Solutions After an Affair</h2>
+                <p class="card-text" style="text-align: center; max-width: 760px; margin: 0 auto var(--space-xl);">Every couple engages infidelity reconciliation differently. We'll co-create a plan that matches your nervous systems, responsibilities, and timelines so change feels possible and sustainable.</p>
+                <div class="success-paths">
+                    <div class="success-card fade-in">
+                        <h3>Rebuild trust together</h3>
+                        <ul class="keyword-list">
+                            <li>Transparency rituals and agreed-upon boundaries</li>
+                            <li>Attachment-focused conversations that calm reactivity</li>
+                            <li>Structured check-ins to track healing and setbacks</li>
+                        </ul>
+                    </div>
+                    <div class="success-card fade-in">
+                        <h3>Stabilize before deciding</h3>
+                        <ul class="keyword-list">
+                            <li>Pause big decisions while stabilizing the crisis</li>
+                            <li>Clarify personal and shared non-negotiables</li>
+                            <li>Practice new repair moves before committing long-term</li>
+                        </ul>
+                    </div>
+                    <div class="success-card fade-in">
+                        <h3>Separate with dignity</h3>
+                        <ul class="keyword-list">
+                            <li>Create agreements around housing, finances, and family communication</li>
+                            <li>Close out the relationship with care and accountability</li>
+                            <li>Plan future co-parenting or friendship boundaries</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="inline-cta">
+                    <p>Wherever you are in the aftermath, we'll map the next steady step.</p>
+                    <a href="#consultation" class="btn btn-primary">Explore infidelity solutions</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- What to Expect -->
+        <section class="section">
+            <div class="container" style="max-width: 900px;">
+                <h2 class="card-title" style="text-align: center; margin-bottom: var(--space-md);">What to Expect in Infidelity Counseling</h2>
+                <p class="card-text" style="text-align: center; margin: 0 auto var(--space-xl); max-width: 680px;">No guessing or vague "processing." Each session balances calm structure with enough flexibility to name what hurts and what hope requires.</p>
+                <ul class="expectations-list">
+                    <li><strong>Before session one:</strong> You'll receive prompts to capture the affair timeline and what you each need from counseling.</li>
+                    <li><strong>During sessions:</strong> We'll alternate focused dialogue, skill-building, and moments to test new agreements in real time.</li>
+                    <li><strong>Between sessions:</strong> Expect brief check-ins or micro-practices to keep momentum without flooding your week.</li>
+                    <li><strong>When crisis spikes:</strong> We'll decide in advance how to ground quickly and what emergency resources are on call.</li>
+                </ul>
+                <div class="inline-cta">
+                    <p>Curious if this container fits your relationship?</p>
+                    <a href="#consultation" class="btn btn-secondary">Talk through expectations</a>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-top: var(--space-md);">If immediate safety is at risk, contact 988 or your local emergency services. Counseling with me is steady support, not a crisis hotline.</p>
+            </div>
+        </section>
+
+        <!-- Testimonial -->
+        <section class="section">
+            <div class="container">
+                <div class="testimonial-section fade-in">
+                    <p class="testimonial-quote">“We were stuck replaying the same fight about the affair. Jonathan slowed everything down, helped us see the pattern underneath it, and made it possible to talk about staying together without exploding.”</p>
+                    <p class="testimonial-citation">— Former couple therapy client, shared with permission</p>
                 </div>
             </div>
         </section>
@@ -700,6 +965,16 @@
                 <div style="max-width: 800px; margin: 0 auto;">
                     <div class="faq-item fade-in">
                         <button class="faq-question" onclick="toggleFAQ(this)">
+                            What are the chances we can repair after an affair?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Research suggests many couples can reconcile after infidelity when there is sustained accountability and structured support. We'll assess readiness, set measurable check-ins, and decide together whether reconciliation or a different infidelity solution makes the most sense.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
                             Do you require full disclosure?
                             <span class="faq-icon">+</span>
                         </button>
@@ -732,6 +1007,10 @@
         </section>
     </main>
 
+    <div class="sticky-cta" id="stickyCTA">
+        <a href="#consultation" class="btn btn-primary">Book Your 15-Min Consultation</a>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -763,7 +1042,6 @@
         function toggleFAQ(button) {
             const faqItem = button.parentElement;
             const answer = faqItem.querySelector('.faq-answer');
-            const icon = button.querySelector('.faq-icon');
 
             // Close all other FAQ items
             document.querySelectorAll('.faq-item').forEach(item => {
@@ -795,6 +1073,38 @@
                 observer.observe(el);
             });
 
+            const ctaLinks = document.querySelectorAll('a[href="#consultation"]');
+            const consultationSection = document.getElementById('consultation');
+            const stickyCTA = document.getElementById('stickyCTA');
+
+            const scrollToConsultation = (event) => {
+                event.preventDefault();
+                if (consultationSection) {
+                    consultationSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
+
+            ctaLinks.forEach((link) => {
+                link.addEventListener('click', scrollToConsultation);
+            });
+
+            if (stickyCTA && consultationSection) {
+                const toggleStickyCTA = () => {
+                    const triggerPoint = 360;
+                    const rect = consultationSection.getBoundingClientRect();
+                    const consultationVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
+
+                    if (window.scrollY > triggerPoint && !consultationVisible) {
+                        stickyCTA.classList.add('visible');
+                    } else {
+                        stickyCTA.classList.remove('visible');
+                    }
+                };
+
+                window.addEventListener('scroll', toggleStickyCTA, { passive: true });
+                toggleStickyCTA();
+            }
+
             // Calendly conversion tracking for GTM
             window.addEventListener('message', function(e) {
                 if (e.data.event && e.data.event === 'calendly.event_scheduled') {
@@ -802,14 +1112,6 @@
                         'event': 'calendlyEventScheduled'
                     });
                 }
-            });
-        });
-
-        // Smooth scroll for CTA button
-        document.querySelector('a[href="#consultation"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('consultation').scrollIntoView({
-                behavior: 'smooth'
             });
         });
     </script>
