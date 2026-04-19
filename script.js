@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavigationInteractions();
     initPortalEffects();
     initAccessibilityFeatures();
+    initChrisEasterEgg();
 });
 
 // Smooth scrolling for navigation links
@@ -573,5 +574,90 @@ function debounce(func, wait) {
 const debouncedScroll = debounce(() => {
     // Any heavy scroll operations can go here
 }, 16); // ~60fps
+
+// Easter egg: click the logo 5 times quickly for a hello to Chris
+function initChrisEasterEgg() {
+    const logos = document.querySelectorAll('.logo');
+    if (!logos.length) return;
+
+    const CLICK_WINDOW_MS = 1500;
+    const CLICKS_REQUIRED = 5;
+    let clickCount = 0;
+    let lastClickAt = 0;
+    let celebrating = false;
+
+    logos.forEach(logo => {
+        logo.style.cursor = logo.style.cursor || 'pointer';
+        logo.addEventListener('click', () => {
+            const now = Date.now();
+            if (now - lastClickAt > CLICK_WINDOW_MS) {
+                clickCount = 0;
+            }
+            lastClickAt = now;
+            clickCount += 1;
+
+            if (clickCount >= CLICKS_REQUIRED && !celebrating) {
+                clickCount = 0;
+                celebrating = true;
+                launchConfettiForChris(() => { celebrating = false; });
+            }
+        });
+    });
+}
+
+function launchConfettiForChris(onDone) {
+    const prefersReducedMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const banner = document.createElement('div');
+    banner.className = 'chris-banner';
+    banner.setAttribute('role', 'status');
+    banner.setAttribute('aria-live', 'polite');
+    banner.textContent = 'Hi Chris! 👋';
+    document.body.appendChild(banner);
+
+    let container = null;
+    if (!prefersReducedMotion) {
+        container = document.createElement('div');
+        container.className = 'chris-confetti-container';
+        container.setAttribute('aria-hidden', 'true');
+
+        const palette = ['#D4845C', '#E17B6A', '#F2B28C', '#8A5A3B', '#F6E2C9', '#B55E3E'];
+        const pieces = 60;
+        for (let i = 0; i < pieces; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'chris-confetti-piece';
+            const left = Math.random() * 100;
+            const delay = Math.random() * 0.6;
+            const duration = 2.4 + Math.random() * 1.4;
+            const rotateStart = Math.random() * 360;
+            const rotateEnd = rotateStart + 360 + Math.random() * 540;
+            const drift = (Math.random() * 30 - 15).toFixed(1);
+            const color = palette[i % palette.length];
+            const width = 6 + Math.random() * 6;
+            const height = 10 + Math.random() * 10;
+
+            piece.style.left = left + 'vw';
+            piece.style.background = color;
+            piece.style.width = width + 'px';
+            piece.style.height = height + 'px';
+            piece.style.setProperty('--chris-drift', drift + 'vw');
+            piece.style.setProperty('--chris-rotate-start', rotateStart + 'deg');
+            piece.style.setProperty('--chris-rotate-end', rotateEnd + 'deg');
+            piece.style.animationDelay = delay + 's';
+            piece.style.animationDuration = duration + 's';
+
+            container.appendChild(piece);
+        }
+        document.body.appendChild(container);
+    }
+
+    const totalMs = prefersReducedMotion ? 2200 : 3800;
+    setTimeout(() => {
+        if (container && container.parentNode) container.parentNode.removeChild(container);
+        if (banner.parentNode) banner.parentNode.removeChild(banner);
+        if (typeof onDone === 'function') onDone();
+    }, totalMs);
+}
 
 window.addEventListener('scroll', debouncedScroll);

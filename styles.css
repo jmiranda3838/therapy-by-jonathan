@@ -1649,3 +1649,90 @@ a:hover, a:focus {
     border-width: 4px;
   }
 }
+
+/* Chris easter egg: confetti + banner */
+.chris-confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9998;
+}
+
+.chris-confetti-piece {
+  position: absolute;
+  top: -12vh;
+  border-radius: 2px;
+  opacity: 0.95;
+  will-change: transform;
+  animation-name: chris-confetti-fall;
+  animation-timing-function: cubic-bezier(0.25, 0.75, 0.55, 1);
+  animation-fill-mode: forwards;
+}
+
+@keyframes chris-confetti-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(var(--chris-rotate-start, 0deg));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--chris-drift, 0), 112vh, 0) rotate(var(--chris-rotate-end, 360deg));
+    opacity: 1;
+  }
+}
+
+.chris-banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  color: var(--doorway-frame, #D4845C);
+  background: rgba(255, 250, 245, 0.92);
+  padding: 1.25rem 2.5rem;
+  border-radius: 999px;
+  box-shadow: 0 12px 40px rgba(138, 90, 59, 0.25);
+  z-index: 9999;
+  pointer-events: none;
+  white-space: nowrap;
+  animation: chris-banner-pop 3.6s ease-in-out forwards;
+}
+
+@keyframes chris-banner-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chris-banner {
+    animation: chris-banner-fade 2.2s ease-in-out forwards;
+  }
+
+  @keyframes chris-banner-fade {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+}
